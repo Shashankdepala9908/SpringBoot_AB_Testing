@@ -31,3 +31,24 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Build output
+/target/
+
+# IDE
+.idea/
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# H2 / app data
+/data/
+
+
+
