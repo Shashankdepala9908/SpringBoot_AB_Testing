@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Beta — Studio</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        :root{--bg:#faf7f2;--ink:#1a1f29;--accent:#0ea5e9;--card:#ffffff;--muted:#5b6574}
+        *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+        header{background:#fff;border-bottom:1px solid #e7e5e4;padding:14px 18px}
+        .wrap{max-width:980px;margin:24px auto;padding:0 18px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+        .card{background:var(--card);border:1px solid #ebe9e6;border-radius:14px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+        .pill{display:inline-block;background:#e0f2fe;color:#075985;border:1px solid #bae6fd;border-radius:999px;padding:6px 10px;font-weight:700}
+        .btn{border:1px solid #93c5fd;background:#eff6ff;color:#0c4a6e;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600}
+        a.link{color:#0ea5e9;text-decoration:none;border-bottom:1px dotted #0ea5e9}
+    </style>
+    <script>
+        async function log(id){
+          await fetch('/api/events',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({buttonId:id})
+          });
+        }
+    </script>
+</head>
+<body>
+<header>
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;">
+        <strong>Beta studio</strong>
+        <span class="pill">Variant: BETA</span>
+    </div>
+</header>
+
+<div class="wrap">
+    <div class="grid">
+        <div class="card">
+            <h2>Welcome, <span th:text="${user}">user</span> 👋</h2>
+            <p style="color:var(--muted)">This **Beta** view emphasizes exploration and information.</p>
+            <button class="btn" onclick="log('beta-start-tour')">Start Beta tour</button>
+        </div>
+
+        <div class="card">
+            <h3>Quick action</h3>
+            <p style="color:var(--muted)">Record interest without navigation changes.</p>
+            <button class="btn" onclick="log('beta-record-interest')">Record interest</button>
+        </div>
+    </div>
+
+    <p style="margin-top:18px">
+        <a class="link" href="/dashboard">Refresh content (variant is fixed)</a>
+    </p>
+</div>
+</body>
+</html>
